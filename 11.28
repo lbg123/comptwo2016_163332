@@ -1,0 +1,103 @@
+#include <iostream>
+#include <stdio.h>
+#include <windows.h>
+#include <cstring>
+#include <ctime>
+#include <stdlib.h>
+#include <string.h>
+#include <conio.h>
+
+
+using namespace std;
+
+void gotoXY(int x, int y);
+COORD CursorPosition;
+
+class Menu{
+	public:
+		void start();
+		void rule();
+		void exit();
+};
+
+class Start{
+	public:
+		void time();
+		void card();
+};
+
+void Menu::start()
+{
+	int a=0;
+	gotoXY(118,39);
+	cout << "made by LBG";
+	gotoXY(60,14);
+	cout << "1. 게임시작";
+	gotoXY(60,16);
+	cout << "2. 게임설명";
+	gotoXY(60,18);
+	cout << "3. 종료하기";
+	gotoXY(60,20);
+	cout << "선택 : ";
+	cin >> a;
+	
+	switch(a)
+	{
+		case 1:
+			Start Showstart;
+			Showstart.time();
+			break;
+		case 2:
+			Menu Showmenu2;
+			Showmenu2.rule();
+			system("cls");
+			Menu Showmenu;
+			Showmenu.start();
+			break;
+		case 3:
+			Menu Showmenu3;
+			Showmenu3.exit();
+			break;
+	} 
+}
+
+void Menu::exit()
+{
+	system("cls");
+	cout << "종료중...";
+	getch();
+} 
+
+void Start::time()
+{
+	int i=0;
+	system("cls");
+	gotoXY(60,5);
+	cout << "외울 시간을 정해주세요.(초단위) : ";
+	cin >> i;
+}
+
+void Menu::rule()
+{
+	system("cls");
+	gotoXY(53,5);
+	cout << "1. 외울 시간을 정합니다.";
+	gotoXY(53,7);
+	cout << "2. 카드를 외웁니다.";
+	gotoXY(53,9);
+	cout << "3. 맞춰야 할 카드를 찾아 번호를 씁니다.";
+	gotoXY(53,11);
+	cout << "4. 점수가 높은 사람이 이깁니다.";
+	gotoXY(53,20);
+	cout << "아무키나 입력시 첫화면으로 돌아갑니다.";
+	getch();
+}
+
+
+
+void gotoXY(int x, int y)
+{
+	COORD pos={x,y};
+	
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),pos);
+}
